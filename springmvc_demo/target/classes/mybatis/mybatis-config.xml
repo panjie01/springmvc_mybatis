@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+
+    <!--<typeAliases>  //整合到spring中
+        <typeAlias type="com.springmvc.entity.User" alias="User"></typeAlias>
+    </typeAliases>-->
+
+   <!-- <environments default="default">
+        <environment id="default">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+
+                <property name="driver" value="${jdbc.driverClass}"></property>
+                <property name="url" value="${jdbc.url}"></property>
+                <property name="username" value="${jdbc.username}"></property>
+                <property name="password" value="${jdbc.password}"></property>
+                &lt;!&ndash;<property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql:///test" />
+                <property name="username" value="root" />
+                <property name="password" value="123" />&ndash;&gt;
+            </dataSource>
+
+        </environment>
+    </environments>-->
+
+
+    <!--<mappers>
+        <mapper resource="mybatis\mappers\UserMapper.xml"/>
+    </mappers>-->
+
+</configuration>

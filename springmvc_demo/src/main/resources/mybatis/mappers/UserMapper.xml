@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springmvc.mapper.UserMapper">
+    <!--type：表示封装成哪个类的对象-->
+    <resultMap id="baseResultMap" type="User">
+        <!--column:代表查询出来的别名
+            property:封装到对象上的哪个属性
+        -->
+        <id column="id" property="id"></id>
+        <result column="user_name" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="age" property="age"></result>
+        <result column="create_time" property="createtime"></result>
+    </resultMap>
+
+    <insert id="add" parameterType="User"
+                       useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+        insert into user_t(user_name,age,password)values
+         (#{username},#{age},#{password})
+    </insert>
+
+    <update id="update" parameterType="User">
+        update user_t set user_name=#{username},age=#{age},password=#{password}
+        where id=#{id}
+    </update>
+
+
+    <select id="queryById" parameterType="int" resultMap="baseResultMap">
+        select * from user_t where id=#{id}
+    </select>
+    <select id="queryByKeyword" parameterType="java.util.Map" resultMap="baseResultMap">
+        select * from user_t
+        <!--<if test="keyword != null" >
+            where user_name like concat('%',#{keyword},'%')
+        </if>-->
+
+        <where>
+            <if test="keyword != null" >
+                and user_name like concat('%',#{keyword},'%')
+            </if>
+            <if test="age != null" >
+                and age = #{age}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByAges" parameterType="List" resultType="User">
+        select * from user_t where age in
+        <foreach collection="list" open="(" close=")" index="index" separator="," item="item">
+            #{item}
+        </foreach>
+
+    </select>
+</mapper>
